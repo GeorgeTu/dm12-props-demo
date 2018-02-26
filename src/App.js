@@ -1,3 +1,5 @@
+// PROPS = DATA PASSED FROM PARENT TO CHILD COMPONENT(S)
+// AS ATTRIBUTES ON THE CHILD ELEMENT BEING RENDERED
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -27,7 +29,9 @@ class App extends Component {
   // }
   // METHOD TO PASS TO CHILD COMPONENTS
   handleNameChange(name, index) {
+    // COPY OUR ARRAY SO WE DON"T MUTATE DIRECTLY
     const subredditsCopy = this.state.subreddits.slice();
+    // UPDATE THE NAME AT THE INDEX
     subredditsCopy[index] = name;
     this.setState({ subreddits: subredditsCopy });
   }
@@ -40,7 +44,9 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div>
-          {/* MAP OVER DATA ON STATE AND PASS UNIQUE PROPS TO INDIVIDUAL CHILD COMPONENTS */}
+          {/* MAP OVER DATA ON STATE AND PASS UNIQUE PROPS TO INDIVIDUAL CHILD COMPONENTS
+              THIS MAP WILL GENERATE 4 SUBREDDITCONTAINER COMPONENTS WITH THEIR OWN UNIQUE DATA
+          */}
           {this.state.subreddits.map((val, idx) => (
             <SubRedditContainer
               key={idx}
@@ -54,6 +60,7 @@ class App extends Component {
           <br />
           <br />
           <br />
+          {/* PASSING PROPS TO FUNCTION (STATELESS) COMPONENT */}
           <HelloMessage name={"Steven"} />
           <HelloMessage name={"John"} />
           <HelloMessage name={"Jack"} />
